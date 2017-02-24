@@ -1,0 +1,21 @@
+{
+  "name": "node-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server-1.js",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.1",
+    "express-session": "^1.15.1",
+    "install": "^0.8.7",
+    "morgan": "^1.8.1",
+    "session-file-store": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node server-1"
+  },
+  "author": "Jair",
+  "license": "ISC"
+}
