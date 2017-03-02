@@ -36,14 +36,22 @@ exports.verifyOrdinaryUser = function (req, res, next) {
 };
 
 exports.verifyAdmin = function(req, res, next){
-    if (req.decoded._doc.admin)
-    {
-        return next();
-    } else {
-        // if the user is not admin then return err
-        var err = new Error('You are not authorized to perform this operation!');
+    if (!req.decoded){
+        var err = new Error('You are not authorized to perform this operation');
         err.status = 403;
         return next(err);
+    } else {
+        var id = req.decoded._id;
+        if (req.decoded.admin)
+        {
+            return next();
+        } else {
+            // if the user is not admin then return err
+            var err = new Error('You are not authorized to perform this operation!');
+            err.status = 403;
+            return next(err);
+        }
     }
+    
 
 }
