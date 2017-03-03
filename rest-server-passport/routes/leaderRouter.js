@@ -9,7 +9,7 @@ var leaderRouter = express.Router();
 leaderRouter.use(bodyParser.json());
 
 leaderRouter.route('/')
-.get(Verify.verifyOrdinaryUser, function(req, res, next){
+.get(function(req, res, next){
 	Leaders.find({}, function(err, leader){
 		if (err) throw err;
         res.json(leader);
@@ -37,7 +37,7 @@ leaderRouter.route('/')
 })
 
 leaderRouter.route('/:leaderId')
-.get(Verify.verifyOrdinaryUser ,function(req, res, next){
+.get(function(req, res, next){
 	Leaders.findById(req.params.leaderId, function(err, leader){
 		if (err) throw err;
 		res.json(leader);

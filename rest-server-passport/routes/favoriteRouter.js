@@ -12,7 +12,7 @@ favoriteRouter.use(bodyParser.json());
 favoriteRouter.route('/')
     .all(verify.verifyOrdinaryUser)
     .get(function (req, res, next) {
-        Favorite.find({'postedBy': req.decoded._doc._id})
+        Favorite.find({'postedBy': req.decoded._id})
             .populate('postedBy')
             .populate('dishes')
             .exec(function (err, favorites) {
@@ -22,10 +22,10 @@ favoriteRouter.route('/')
     })
 
     .post(function (req, res, next) {
-        Favorite.find({'postedBy': req.decoded._doc._id})
+        Favorite.find({'postedBy': req.decoded._id})
             .exec(function (err, favorites) {
                 if (err) throw err;
-                req.body.postedBy = req.decoded._doc._id;
+                req.body.postedBy = req.decoded._id;
 
                 if (favorites.length) {
                     var favoriteAlreadyExist = false;
@@ -63,7 +63,7 @@ favoriteRouter.route('/')
 
     .
     delete(function (req, res, next) {
-        Favorite.remove({'postedBy': req.decoded._doc._id}, function (err, resp) {
+        Favorite.remove({'postedBy': req.decoded._id}, function (err, resp) {
             if (err) throw err;
             res.json(resp);
         })
@@ -73,7 +73,7 @@ favoriteRouter.route('/:dishId')
     .all(verify.verifyOrdinaryUser)
     .delete(function (req, res, next) {
 
-        Favorite.find({'postedBy': req.decoded._doc._id}, function (err, favorites) {
+        Favorite.find({'postedBy': req.decoded._id}, function (err, favorites) {
             if (err) return err;
             var favorite = favorites ? favorites[0] : null;
 
